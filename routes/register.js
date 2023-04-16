@@ -2,10 +2,14 @@ var express = require('express');
 var router = express.Router();
 var db = require('../database');
 
+
+/* change variable names “req” and “res” to meaningful names. */
 router.get("/", (req, res) => {
     res.render("register");
 })
 
+
+/* change variable names “req” and “res” to meaningful names. */
 router.post("/auth", (req, res) => {
     const { name, email, password, password_confirm } = req.body;
 

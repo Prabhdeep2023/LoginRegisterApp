@@ -4,20 +4,17 @@ const req = request(baseURL);
 
 describe("Unit tests", () => {
 
-    /* Add the description */
-    it("Main page", async () => {
+    it("Main page", async () => {                   // Add the description for the unit test
         const res = await req.get("/");
         expect(res.statusCode).toBe(200);
     });
 
-    /* Add the description */
-    it("Login form", async () => {
+    it("Login form", async () => {                  // Add the description for the unit test
         const res = await req.get("/login");
         expect(res.statusCode).toBe(200);
     });
 
-    /* Add the description */
-    it("Register form", async () => {
+    it("Register form", async () => {               // Add the description for the unit test
         const res = await req.get("/register");
         expect(res.statusCode).toBe(200);
     });

@@ -2,13 +2,11 @@ var express = require('express');
 var router = express.Router();
 var db = require('../database');
 
-/* Add description */
-router.get("/", (req, res) => {
+router.get("/", (req, res) => {                                                             // Add the description of the method
     res.render("register");
 })
 
-/* Add description */
-router.post("/auth", (req, res) => {
+router.post("/auth", (req, res) => {                                                        // Add the description of the method
     const { name, email, password, password_confirm } = req.body;
 
     if(name.trim().length == 0 || email.trim().length == 0 || password.length == 0) {

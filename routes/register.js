@@ -12,6 +12,8 @@ router.get("/", (req, res) => {
 /* change variable names “req” and “res” to meaningful names. */
 router.post("/auth", (req, res) => {
     const { name, email, password, password_confirm } = req.body;
+    
+    /* no null value check implemented for the variable – “password_confirm”*/
 
     if(name.trim().length == 0 || email.trim().length == 0 || password.length == 0) {
         return res.render('register', { message: 'Please fill all the fields!' })
@@ -34,6 +36,8 @@ router.post("/auth", (req, res) => {
                 }
                 else {
                     return res.render('register', { message: 'User registered!' })
+                    
+                    /*use constants in place of the hardcoded message strings */
                 }
             })
         })
@@ -41,3 +45,6 @@ router.post("/auth", (req, res) => {
 })
 
 module.exports = router;
+
+/*add comments for both the methods*/
+

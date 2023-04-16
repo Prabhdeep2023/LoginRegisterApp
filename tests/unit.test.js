@@ -1,5 +1,5 @@
 const request = require("supertest");
-const baseURL = "http://localhost:7123"
+const baseURL = "http://localhost:7123"             // put the URL in the global context instead of hardcoding it
 const req = request(baseURL);
 
 describe("Unit tests", () => {

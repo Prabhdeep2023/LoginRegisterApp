@@ -7,12 +7,12 @@ router.get("/", (req, res) => {                                             // A
 })
 
 router.post('/auth', function(request, response) {                          // Add the description to the method
-    const { email, password } = request.body;
+    const { email, password } = request.body;                               // Add exception handling in the post method
   
     if (email && password)
     {
       query = `Select * from users where email = "${email}"`;
-      db.query(query, async (error, data) => {
+      db.query(query, async (error, data) => {                              
         if (data.length > 0)
         {
             let passwordOriginal = data[0].password;

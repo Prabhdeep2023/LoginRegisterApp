@@ -1,33 +1,33 @@
-const EXPRESS = require('express');
+const express = require('express');                         // The name of the constant "express" should be in upper case style
 var cookieParser = require('cookie-parser');
 var sessions = require('express-session');
-var indexRouter = require('./rouexpresstes/index');
-var loginRouter = require('./routes/login');
-var registerRouter = require('./routes/register');
-var dashboardRouter = require('./routes/dashboard');
+var indexrouter = require('./rouexpresstes/index');         // The name of the variable "indexrouter" should be in camel case style
+var loginrouter = require('./routes/login');                // The name of the variable "loginrouter" should be in camel case style
+var registerrouter = require('./routes/register');          // The name of the variable "registerrouter" should be in camel case style
+var dashboardrouter = require('./routes/dashboard');        // The name of the variable "dashboardrouter" should be in camel case style
 
-const APP = EXPRESS();
-APP.use(EXPRESS.urlencoded({extended: false}));
-APP.use(EXPRESS.json());
-APP.use(sessions({
+const app = express();                                      // The name of the constant "app" should be in upper case style
+app.use(express.urlencoded({extended: false}));
+app.use(express.json());
+app.use(sessions({
     secret : 'loginapp',
     resave : true,
     saveUninitialized : true
   }))
-APP.use(cookieParser());
+app.use(cookieParser());
 
-APP.use('/', indexRouter);
-APP.use('/login', loginRouter);
-APP.use('/register', registerRouter);
-APP.use('/logout', dashboardRouter);
+app.use('/', indexrouter);
+app.use('/login', loginrouter);
+app.use('/register', registerrouter);
+app.use('/logout', dashboardrouter);
 
-APP.set('view engine', 'hbs');
-const PATH = require('path');
-const PUBLICDIR = PATH.join(__dirname, './public');
-APP.use(EXPRESS.static(PUBLICDIR));
+app.set('view engine', 'hbs');
+const path = require('path');                               // The name of the constant "path" should be in upper case style
+const publicdir = path.join(__dirname, './public');         // The name of the constant "publicdir" should be in upper case style
+app.use(express.static(publicdir));
 
-APP.listen(7123, () => {
+app.listen(7123, () => {
     console.log();
 })
 
-module.exports = APP;
+module.exports = app;

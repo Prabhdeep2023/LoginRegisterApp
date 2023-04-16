@@ -40,6 +40,7 @@ router.post('/auth', function(request, response) {
     {
         return response.render('login', { errormessage: 'Please enter email address and password.' })
     }
+    /*use constants in place of the hardcoded message strings*/
   });
 
 module.exports = router;

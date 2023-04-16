@@ -26,7 +26,7 @@ const path = require('path');                               // The name of the c
 const publicdir = path.join(__dirname, './public');         // The name of the constant "publicdir" should be in upper case style
 app.use(express.static(publicdir));
 
-app.listen(7123, () => {
+app.listen(7123, () => {                                    // Put the port number in a global constant instead of hardcoding it
     console.log();
 })
 

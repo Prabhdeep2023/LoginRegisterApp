@@ -8,6 +8,8 @@ router.get("/", (req, res) => {
 
 router.post('/auth', function(request, response) {
     const { email, password } = request.body;
+    
+    /*add comments for both the methods*/
   
     if (email && password)
     {
@@ -16,6 +18,7 @@ router.post('/auth', function(request, response) {
         if (data.length > 0)
         {
             let passwordOriginal = data[0].password;
+            /*unnecessary declaration of the variable – passwordOriginal*/
             if(password == passwordOriginal)
             {
                 request.session.user_id = data[0].id;

@@ -6,6 +6,8 @@ var loginrouter = require('./routes/login');
 var registerrouter = require('./routes/register');
 var dashboardrouter = require('./routes/dashboard');
 
+/*all four variables’ names should be in camel casing*/
+
 const app = express();
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());

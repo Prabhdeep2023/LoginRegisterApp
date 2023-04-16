@@ -1,5 +1,7 @@
 const mysql = require('mysql2');
 const dotenv = require('dotenv');
+
+/*constant names should be capitalized. */
 dotenv.config({ path: './.env'});
 
 const db = mysql.createConnection({

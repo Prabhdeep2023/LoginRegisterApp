@@ -2,6 +2,7 @@ const request = require("supertest");
 const baseURL = "http://localhost:7123"
 const req = request(baseURL);
 
+/* change variable names “req” and “res” to something meaningful. */
 describe("Unit tests", () => {
 
     it("Main page", async () => {

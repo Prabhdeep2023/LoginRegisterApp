@@ -4,6 +4,7 @@ var router = express.Router();
 var db = require('../database');
 
 router.get("/", (req, res) => {
+  /*add comments for the method*/
   var sessionvar = req.session;
   if (sessionvar.user_id)
       res.render("dashboard", { session: req.session });

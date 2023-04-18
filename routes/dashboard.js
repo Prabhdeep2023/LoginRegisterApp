@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
-router.get("/", function(rq, rs, next){
-  rq.session.destroy();
-  rs.redirect("/");
+/* this method loads the dashboard */
+router.get("/", function(request, response){
+  request.session.destroy();
+  response.redirect("/");
   });
 
 module.exports = router;

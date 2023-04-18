@@ -3,12 +3,14 @@ var router = express.Router();
 
 var db = require('../database');
 
-router.get("/", (req, res) => {
-  var sessionvar = req.session;
+/* this method loads the index page if user is not logged in 
+   or the dashboard page if the user is logged in */
+router.get("/", (request, response) => {
+  var sessionvar = request.session;
   if (sessionvar.user_id)
-      res.render("dashboard", { session: req.session });
+    response.render("dashboard", { session: request.session });
   else
-      res.render("index",  { session: req.session });
+    response.render("index",  { session: request.session });
 });
 
 module.exports = router;

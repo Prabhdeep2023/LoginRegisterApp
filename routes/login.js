@@ -2,10 +2,13 @@ var express = require('express');
 var router = express.Router();
 var db = require('../database');
 
-router.get("/", (req, res) => {
-    res.render("login");
+/* this method loads the login page */
+router.get("/", (request, response) => {
+    response.render("login");
 })
 
+/* this method is called to authenticate a user
+   and load the dashboard after successful login */
 router.post('/auth', function(request, response) {
     const { email, password } = request.body;
   
@@ -15,8 +18,7 @@ router.post('/auth', function(request, response) {
       db.query(query, async (error, data) => {
         if (data.length > 0)
         {
-            let passwordOriginal = data[0].password;
-            if(password == passwordOriginal)
+            if(password == data[0].password)
             {
                 request.session.user_id = data[0].id;
                 request.session.name = data[0].name;

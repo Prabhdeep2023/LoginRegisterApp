@@ -1,10 +1,10 @@
 const express = require('express');
 var cookieParser = require('cookie-parser');
 var sessions = require('express-session');
-var indexrouter = require('./routes/index');
-var loginrouter = require('./routes/login');
-var registerrouter = require('./routes/register');
-var dashboardrouter = require('./routes/dashboard');
+var indexRouter = require('./routes/index');
+var loginRouter = require('./routes/login');
+var registerRouter = require('./routes/register');
+var dashboardRouter = require('./routes/dashboard');
 
 const app = express();
 app.use(express.urlencoded({extended: false}));
@@ -16,10 +16,10 @@ app.use(sessions({
   }))
 app.use(cookieParser());
 
-app.use('/', indexrouter);
-app.use('/login', loginrouter);
-app.use('/register', registerrouter);
-app.use('/logout', dashboardrouter);
+app.use('/', indexRouter);
+app.use('/login', loginRouter);
+app.use('/register', registerRouter);
+app.use('/logout', dashboardRouter);
 
 app.set('view engine', 'hbs');
 const path = require('path');

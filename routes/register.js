@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../database');
+var constants = require('../constants');
 
 /* this method loads the registration page */
 router.get("/", (request, response) => {
@@ -12,10 +13,10 @@ router.post("/auth", (request, response) => {
     const { name, email, password, password_confirm } = request.body;
 
     if(name.trim().length == 0 || email.trim().length == 0 || password.length == 0 || password_confirm.length == 0) {
-        return response.render('register', { message: 'Please fill all the fields!' })
+        return response.render('register', { message: constants.FIELDS_REQUIRED })
     }
     else if(password !== password_confirm) {
-        return response.render('register', { message: 'Passwords do not match!' })
+        return response.render('register', { message: constants.PASSWD_MISMATCH })
     }
     else {
         db.query('SELECT email FROM users WHERE email = ?', [email], async (error, result) => {
@@ -23,7 +24,7 @@ router.post("/auth", (request, response) => {
                 console.log(error)
             }
             if( result.length > 0 ) {
-                return response.render('register', { message: 'This email is already in use' })
+                return response.render('register', { message: constants.EMAIL_OCCUPIED })
             }
     
             db.query('INSERT INTO users SET ?', {name: name, email: email, password: password}, (error, results) => {
@@ -31,7 +32,7 @@ router.post("/auth", (request, response) => {
                     console.log(error)
                 }
                 else {
-                    return response.render('register', { message: 'User registered!' })
+                    return response.render('register', { message: constants.USER_REGISTERED })
                 }
             })
         })

@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../database');
+var constants = require('../constants');
 
 /* this method loads the login page */
 router.get("/", (request, response) => {
@@ -16,6 +17,9 @@ router.post('/auth', function(request, response) {
     {
       query = `Select * from users where email = "${email}"`;
       db.query(query, async (error, data) => {
+        if(error){
+            console.log(error);
+        }
         if (data.length > 0)
         {
             if(password == data[0].password)
@@ -26,18 +30,18 @@ router.post('/auth', function(request, response) {
             }
             else
             {
-                return response.render('login', { errormessage: 'Incorrect password!' })
+                return response.render('login', { errormessage: constants.WRONG_PASSWD })
             }
         }
         else
         {
-            return response.render('login', { errormessage: 'Incorrect email address!' })
+            return response.render('login', { errormessage: constants.WRONG_EMAIL })
         }
       });
     }
     else
     {
-        return response.render('login', { errormessage: 'Please enter email address and password.' })
+        return response.render('login', { errormessage: constants.ENTER_EMAIL_PASSWD })
     }
   });
 

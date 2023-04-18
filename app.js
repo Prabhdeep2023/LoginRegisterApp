@@ -1,11 +1,15 @@
 const EXPRESS = require('express');
 var cookieParser = require('cookie-parser');
 var sessions = require('express-session');
+var constants = require('./constants');
+
+/* routing variables for different modules */
 var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/login');
 var registerRouter = require('./routes/register');
 var dashboardRouter = require('./routes/dashboard');
 
+/* express.js variables for web requests and user session */
 const App = EXPRESS();
 App.use(EXPRESS.urlencoded({extended: false}));
 App.use(EXPRESS.json());
@@ -26,7 +30,7 @@ const PATH = require('path');
 const PUBLICDIR = PATH.join(__dirname, './public');
 App.use(EXPRESS.static(PUBLICDIR));
 
-App.listen(7123, () => {
+App.listen(constants.PORT_NUMBER, () => {
     console.log();
 })
 

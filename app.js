@@ -1,4 +1,4 @@
-const express = require('express');
+const EXPRESS = require('express');
 var cookieParser = require('cookie-parser');
 var sessions = require('express-session');
 var indexRouter = require('./routes/index');
@@ -6,28 +6,28 @@ var loginRouter = require('./routes/login');
 var registerRouter = require('./routes/register');
 var dashboardRouter = require('./routes/dashboard');
 
-const app = express();
-app.use(express.urlencoded({extended: false}));
-app.use(express.json());
-app.use(sessions({
+const App = EXPRESS();
+App.use(EXPRESS.urlencoded({extended: false}));
+App.use(EXPRESS.json());
+App.use(sessions({
     secret : 'loginapp',
     resave : true,
     saveUninitialized : true
   }))
-app.use(cookieParser());
+App.use(cookieParser());
 
-app.use('/', indexRouter);
-app.use('/login', loginRouter);
-app.use('/register', registerRouter);
-app.use('/logout', dashboardRouter);
+App.use('/', indexRouter);
+App.use('/login', loginRouter);
+App.use('/register', registerRouter);
+App.use('/logout', dashboardRouter);
 
-app.set('view engine', 'hbs');
-const path = require('path');
-const publicdir = path.join(__dirname, './public');
-app.use(express.static(publicdir));
+App.set('view engine', 'hbs');
+const PATH = require('path');
+const PUBLICDIR = PATH.join(__dirname, './public');
+App.use(EXPRESS.static(PUBLICDIR));
 
-app.listen(7123, () => {
+App.listen(7123, () => {
     console.log();
 })
 
-module.exports = app;
+module.exports = App;
